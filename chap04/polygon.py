@@ -14,7 +14,7 @@ def square(t, length):
 		fd(t, 100)
 		lt(t)
 
-# square(bob, 3)
+# square(bob, 4)
 
 def polygon(t, length, n):
 	for i in range(n):
@@ -29,7 +29,7 @@ def circle(t, r):
 	length = circumference / n
 	polygon(t, length, n)
 
-bob.delay = 0.01
+bob.delay = 0.003
 
 circle(bob, 40)
 
