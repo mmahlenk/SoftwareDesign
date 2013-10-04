@@ -18,7 +18,7 @@ def square(t, length):
 
 def polygon(t, length, n):
 	for i in range(n):
-		fd(t, length)
+		fd(t, length)/
 		lt(t, 360.0/n)
 
 # polygon(bob, 20, 15)
