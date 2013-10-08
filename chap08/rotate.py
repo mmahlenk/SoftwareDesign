@@ -16,12 +16,13 @@ def rotate_word(word, rotated):
     new_word = ''
     for letter in word:
         new_ord = ord(letter) + rotated
-        alpha = (new_ord + 96) % 122
-        new_char = chr(alpha)
+        if new_ord > 122:            
+            new_ord = (new_ord + 96) % 122
+        new_char = chr(new_ord)
         new_word += new_char
     return new_word
     
 
-print rotate_word('xyz', 3)
+print rotate_word('xyz', 10)
 
 
