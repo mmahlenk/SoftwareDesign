@@ -10,25 +10,25 @@ def make_dict():
     returns: dictionary
     """
     d = dict()
-    fin = open('short.txt')
+    fin = open('words.txt')
     for line in fin:
         word = line.strip()
         d[word] = word
     return d
 
 d = make_dict()
-
+# print d 
 
 def make_word_children(word, d):
-    """Function that creates a list of a word's 'children' words 
-    when removing one letter.
+    """Function that creates a list of a word's 'children' that are in 
+    the dictionary when removing one letter.
 
     returns: list
     """
     t = list(word)
     val = [] 
     if len(t)==1:
-        return ''
+        val.append('')
     for i in range(len(word)):
         child = t[:]
         del child[i]
@@ -37,37 +37,65 @@ def make_word_children(word, d):
             val.append(child)
     return val
 
-# print make_word_children('keely')
+# print make_word_children('i', d)
 
 
 def reducible(word, d):
-    # if word == '':
-    #     print "EMPTY"
-    #     return True
-    # else:
-    #     t = make_word_children(word, d)
-    #     for child in t:
-    #         print child
-    #         ans = reducible(child, d)
-    #         print child, ans
-    #         return ans
-    # return False
+    """Function that return True if a word can be reducible using words in the 
+    dictionary. 
+
+    returns: boolean
+    """
+    if word == '':
+        return True
+    else:
+        t = make_word_children(word, d)
+        for child in t:
+            ans = reducible(child, d)
+            return ans
+    return False
 
 
-    res = []
-    for child in make_word_children(word, d):
-        t = reducible(child, d)
-        if t:
-            res.append(child)
-    return res
-
-print reducible('sprite', d)
+print reducible('complecting', d)
 
 
 def check_all_words(d):
+    """Function that creates a list of all reducible words in the dictionary.
+
+    returns: list
+    """
+    known = {}
+    reducible_words = []
     for word in d:
-        print reducible(word, d)
+        if word in known:
+            reducible_words.append(word)
+        if reducible(word, d):
+            reducible_words.append(word)
+            known[word] = word 
+    return reducible_words 
+
+t = check_all_words(d)
+
+# print t
+
+def sort_reducible_words(t):
+    """Function that takes the list of all reducible words and sorts it by length.
+
+    returns: list
+    """
+    words = []
+    for word in t:
+        words.append((len(word), word))
+    words.sort(reverse=True)
+
+    sorted_words = []
+    for length, word in words:
+        sorted_words.append(word)
+    return sorted_words
 
 
-# check_all_words(d)
+print sort_reducible_words(t)
 
+answer = sort_reducible_words(t)
+
+print answer[0]
