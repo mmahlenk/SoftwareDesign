@@ -21,7 +21,7 @@ class MLStripper(HTMLParser):
     def get_data(self):
         return ' '.join(self.fed)
 
-print type(MLStripper)
+# print type(MLStripper)
 
 def strip_tags(html):
     s = MLStripper()
@@ -57,8 +57,9 @@ def zipcode_data(url):
         text = strip_tags(line)
         if "zip code" in text:
             t.append(text)
-        if 'Population' in text:
-            populationText = text.split(': ')[1].split('C')[0]
+        if "Total population" in text:
+            line = text.strip()
+            populationText = line.split(': ')[0].split('H')[0]
     print t[0].split(' z')[0]
     print populationText
 
