@@ -1,4 +1,4 @@
-"""Chapter 14, Exercise 14.6 Solution
+"""Chapter 14, Exercise 14.6 Solution "Secret Problem"
 
 Author: Marisa Mahlenkamp
 """
@@ -6,8 +6,6 @@ Author: Marisa Mahlenkamp
 import urllib
 import string
 from HTMLParser import HTMLParser
-
-
 
 class MLStripper(HTMLParser):
     """ This code was found at stackoverflow to strip the HTML from the text. 
