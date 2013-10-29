@@ -69,7 +69,11 @@ def most_common(hist):
     returns: list of (word, frequency) pairs, sorted by frequency
     """
     t = []
-    # TODO: fix this
+    # create list of tuples with (frequency, word) sorted in descending order
+    for word in hist:
+        t.append((hist[word], word))
+
+    t.sort(reverse=True)
     return t
 
 
@@ -93,7 +97,10 @@ def subtract(d1, d2):
     returns: new dictionary
     """
     res = {}
-    # TODO: fill this is
+    # create dictionary "res" of all d1 words not in d2
+    for word in d1:
+        if word not in d2:
+            res[word] = word
     return res
 
 
@@ -111,9 +118,19 @@ def random_word(hist):
     """Chooses a random word from a histogram.
 
     The probability of each word is proportional to its frequency.
+
+    returns: string
     """
-    # TODO: fix this
-    return 'random word'
+    # creates a list where each word in the histogram is appended it's 'frequency'-number of times
+    t = []
+    for word in hist:
+        for i in range(hist[word]):
+            t.append(word)
+
+    random_word = random.choice(t)
+
+    return random_word
+
 
 
 if __name__ == '__main__':
@@ -134,6 +151,6 @@ if __name__ == '__main__':
         print word,
 
     print "\n\nHere are some random words from the book"
-    for i in range(100):
+    for i in range(10):
         print random_word(hist),
 
