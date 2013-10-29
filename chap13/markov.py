@@ -82,7 +82,10 @@ def markov_text(start, length, d):
         suffix = random.choice(values)
         t.append(suffix)
 
+
     return ' '.join(t)
+
+
 
 
 
