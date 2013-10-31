@@ -14,14 +14,12 @@ def square(t, length):
 		fd(t, 100)
 		lt(t)
 
-# square(bob, 4)
 
 def polygon(t, length, n):
 	for i in range(n):
-		fd(t, length)/
+		fd(t, length)
 		lt(t, 360.0/n)
 
-# polygon(bob, 20, 15)
 
 def circle(t, r):
 	circumference = 2 * math.pi * r
@@ -29,9 +27,8 @@ def circle(t, r):
 	length = circumference / n
 	polygon(t, length, n)
 
-bob.delay = 0.003
+bob.delay = 0.01
 
-circle(bob, 40)
 
 def arc(t, r, angle):
 	circum = (2 * math.pi * r) * (angle / 360.0)
@@ -42,6 +39,13 @@ def arc(t, r, angle):
 		fd(t, arc_length)
 		lt(t, arc_angle)
 
-arc(bob, 40, 180)	
 
-wait_for_user()
+if __name__ == "__main__":
+	# square(bob, 4)
+	polygon(bob, 20, 7)
+
+	# arc(bob, 40, 180)	
+	# circle(bob, 40)
+
+	wait_for_user()
+
