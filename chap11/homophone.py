@@ -4,32 +4,43 @@ Author: Marisa Mahlenkamp
 
 from pronounce import read_dictionary
 
-def make_word_dict():
-    """Reads lines from a file and builds a 
-    dictionary where key and value are the same.
 
-    returns: dictionary
-    """
-    d = dict()
-    fin = open('words.txt')
+def create_word_list(filename):
+    fin = open(filename)
+    t = []
     for line in fin:
         word = line.strip()
-        d[word] = word
-    return d
+        t.append(word)
+    return t
+
+def create_word_dict(filename):
+    fin = open(filename)
+    d = {}
+    for line in fin:
+        word = line.strip()
+        d[word] = word 
+    return d  
+
+t = create_word_list('words.txt')
+d = create_word_dict('words.txt')
+d2 = read_dictionary()
 
 
-d = make_word_dict()
-# print d
-
-def is_homophone(d):
-    for word in d:
-        word1 = word[1:]
-        word2 = word[0]+word[2:]
-        if read_dictionary(word) == read_dictionary(word1) and read_dictionary(word1) == read_dictionary(word2):
-            print word, word1, word2
+def homophone_list(t, d, d2):
+    for word in t:
+        first = word[1:]
+        second = word[0] + word[2:]
+        if is_homophone(word, first, second, d, d2):
+            print word, first, second 
 
 
-is_homophone(d)
+def is_homophone(word, first, second, d, d2):
+    if first not in d or second not in d:
+        return False
+    if first not in d2 or second not in d2 or word not in d2:
+        return False
+    return d2[word] == d2[first] and d2[first] == d2[second]
 
 
-
+if __name__ == '__main__':
+    homophone_list(t, d, d2)

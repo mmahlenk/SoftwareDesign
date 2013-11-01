@@ -43,7 +43,6 @@ def rotate_pair(d):
     of words and prints both in the pair.
     """
     for element in d:
-        length = len(element)
         for i in range(1, 25):
             rotated = rotate_word(element, i)
             if rotated in d:
