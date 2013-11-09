@@ -57,7 +57,7 @@ def zipcode_data(url):
             t.append(text)
         if "Total population" in text:
             line = text.strip()
-            populationText = line.split(': ')[0].split('H')[0]
+            populationText = line.split(' H')[0].split(' p')[0]
     print t[0].split(' z')[0]
     print populationText
 
