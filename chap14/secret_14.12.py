@@ -38,9 +38,6 @@ def create_url():
     
     return ''.join(url)
 
-# print create_url()
-wellesley = create_url()
-
 
 def zipcode_data(url):
     """Function that opens the zipcode url, strips it of HTML (using the
@@ -57,12 +54,14 @@ def zipcode_data(url):
             t.append(text)
         if "Total population" in text:
             line = text.strip()
-            populationText = line.split(' H')[0].split(' p')[0]
+            populationText = line.split(' H')[0]
     print t[0].split(' z')[0]
     print populationText
 
-
-zipcode_data(wellesley)
+if __name__ == '__main__':
+    
+    url = create_url()
+    zipcode_data(url)
 
 
 
