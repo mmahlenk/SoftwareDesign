@@ -3,13 +3,13 @@
 Author: Marisa Mahlenkamp
 """
 
-from datetime import *
+import datetime
 import string 
 
 
 def get_date():
-    today = date.today()
-    week = date.weekday(today)
+    today = datetime.date.today()
+    week = datetime.date.weekday(today)
 
     if week == 0:
         week_day = 'Monday'
@@ -38,44 +38,52 @@ def birthday_countdown(year, month, day):
     day: integer
     """
 
-    now = datetime.now()
-    birth = datetime(year, month, day)
+    now = datetime.datetime.now()
+    birth = datetime.datetime(year, month, day)
 
     age = str((now.date() - birth.date()) / 365)
     years = age.split(' d')[0]
     print 'You are %s years old' % years
 
     # TODO: figure out variable for year
-    countdown = datetime(2013, month, day, 0, 0) - now
+    countdown = datetime.datetime(2013, month, day, 0, 0) - now
     total_seconds = countdown.total_seconds()
     if (total_seconds <0):
-        countdown = datetime(2014, month, day, 0, 0) - now
+        countdown = datetime.datetime(2014, month, day, 0, 0) - now
     print 'Until your next birthday:', countdown
 
 def double_day(bday1, bday2):
-    if bday2>bday1:
+    if bday2 > bday1:
         diff = bday2 - bday1
-        ans = bday2 +diff
+        ans = bday2 + diff
         return ans
     else:
         diff = bday1 - bday2
-        ans = bday1 +diff
+        ans = bday1 + diff
         return ans
+
+def n_times_older(bday1, bday2, n):
+    if bday2 > bday1: 
+        diff = bday2 - bday1
+        ans = bday2 + (diff / (n-1))
+        return ans
+    else:
+        diff = bday1 - bday2
+        ans = bday1 + (diff / (n-1))
+        return ans 
+
 
 
 if __name__ == '__main__':
-    # get_date()
-    birthday_countdown(1992, 11, 12)
-    birthday_countdown(1992, 5, 17)
+
+    get_date()
     birthday_countdown(1992, 10, 12)
 
-    bday1 = datetime(1992, 5, 17)
-    bday2 = datetime(1994, 6, 9)
+    bday1 = datetime.datetime(1992, 5, 17)
+    bday2 = datetime.datetime(1992, 5, 5)
     print double_day(bday1, bday2)
-
-    bday1 = datetime(1992, 5, 17)
-    bday2 = datetime(1992, 5, 5)
-    print double_day(bday1, bday2)
+    
+    print n_times_older(bday1, bday2, 2)
 
 
 
